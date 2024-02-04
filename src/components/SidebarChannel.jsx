@@ -4,9 +4,9 @@ import './sidebarchannel.css'
 const SidebarChannel = ({id, channel}) => {
   return (
     <div className='sidechannel'>
-        <h3>
+        <p>
             <span className='span'> #web$3 </span>
-        </h3>
+        </p>
     </div>
   )
 }

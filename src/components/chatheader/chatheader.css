@@ -1,0 +1,16 @@
+.chatHeader_right > .muisvgIcon-root{
+padding: 5px;
+cursor: pointer;
+}
+
+.chatHeader_right {
+    display: flex;
+    align-items: center;
+    flex: 0.5;
+    justify-content: space-between;
+}
+
+.chatHeader_right > .muisvgIcon-root:hover {
+    padding: 2px;
+    color: white;
+}

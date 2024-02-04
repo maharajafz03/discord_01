@@ -1,6 +1,7 @@
 import React from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
+import pic_3 from '../assets/pic_3.jpg'
 import AddIcon from '@mui/icons-material/Add';
 import MicIcon from '@mui/icons-material/Mic';
 import HeadphonesIcon from '@mui/icons-material/Headphones';
@@ -13,10 +14,10 @@ import { Avatar } from '@mui/material';
 
 const Sidebar = () => {
   return (
-    <div className='sidebar_main'>
-    Sidebar
+    <div className='sidebar_main flex-[0.25] '>
+    
      <div className='sidebar_top'>
-      <h2> crypto dev</h2>
+      <h5> crypto dev</h5>
       <ExpandMoreIcon />
      </div>
 
@@ -42,7 +43,7 @@ const Sidebar = () => {
      
      <div className='sidebar_voice'>
      <SignalCellular4BarIcon 
-      className='sidebar_voiceicon'
+      className='sidebar_voiceicon hover:bg-green-300 rounded-lg'
       fontSize='large'
      />
 
@@ -59,7 +60,7 @@ const Sidebar = () => {
 
      </div>
      <div className='sidebar_profile'>
-      <Avatar />
+      <Avatar src={pic_3}/>
       <div className='sidebar_profileinfo'>
         <h5>fucker</h5>
       </div>

@@ -1,4 +1,4 @@
-.sidechannel:hover > h3{
+.sidechannel:hover > p{
     color: white;
     background-color: #40464b;
 }
@@ -13,6 +13,7 @@
 }
 
 .span{
-    font-size: 25px;
+    font-size: 15px;
     padding: 8px;
 }
+
