@@ -14,7 +14,7 @@ import { Avatar } from '@mui/material';
 
 const Sidebar = () => {
   return (
-    <div className='sidebar_main flex-[0.25] '>
+    <div className='sidebar_main flex-[0.25] relative '>
     
      <div className='sidebar_top'>
       <h5> crypto dev</h5>
@@ -29,25 +29,22 @@ const Sidebar = () => {
           </div>
           <AddIcon className='sidebar_add'/>  
         </div>
-        <div className='sidebar_channel_list'>
+        <div className='sidebar_channel_list overflow-y-auto'>
       <SidebarChannel />
       <SidebarChannel />
       <SidebarChannel />
-      <SidebarChannel />
-      <SidebarChannel />
-      <SidebarChannel />
-    
       <SidebarChannel />
      </div>
      </div>
      
-     <div className='sidebar_voice'>
+     <div className=''>
+     <div className='sidebar_voice '>
      <SignalCellular4BarIcon 
       className='sidebar_voiceicon hover:bg-green-300 rounded-lg'
       fontSize='large'
      />
 
-     <div className='sidebar_voiceinfo'>
+     <div className='sidebar_voiceinfo '>
       <h3>voice connected </h3>
       <p>stream</p>
      </div>
@@ -59,17 +56,18 @@ const Sidebar = () => {
      </div>
 
      </div>
-     <div className='sidebar_profile'>
+     <div className='sidebar_profile '>
       <Avatar src={pic_3}/>
-      <div className='sidebar_profileinfo'>
+      <div className='sidebar_profileinfo '>
         <h5>fucker</h5>
       </div>
-      <div className='sidebar_profileicon'>
+      <div className='sidebar_profileicon '>
        <MicIcon />
        <HeadphonesIcon />       
        <SettingsIcon />
       </div>
      </div>
+    </div>
     </div>
   )
 }

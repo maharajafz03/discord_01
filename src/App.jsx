@@ -5,6 +5,7 @@ import './App.css'
 import {selectUser} from './app/features/userSlice'
 import Singinpage from './pages/Singinpage'
 import {useSelector} from 'react-redux'
+import Login from './pages/Login'
 
 
 const App = () => {
@@ -12,13 +13,13 @@ const App = () => {
   const user = useSelector(selectUser);
   return (
     <div className='flex'>
-     {user ? (
+     {!user ? (
        <>
        <Sidebar />
        <Chat />
        </>
      ):(
-      <Singinpage />
+      <Login />
      )}
       
     </div>
