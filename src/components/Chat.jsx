@@ -18,12 +18,9 @@ const Chat = () => {
       <div className='flex-1'>
         <Message />
         <Message />
-        <Message />
-        <Message />
         
-        <Message />
       </div>
-      <div className='text-white flex items-center shadow-lg shadow-white/10 justify-between p-[10px] rounded-lg m-[20px] bg-gray-700'>
+      <div className=' text-white flex items-center shadow-lg shadow-black/50 justify-between p-[10px] rounded-lg m-[20px] bg-gray-700'>
         <AddCircleOutlineRoundedIcon />
         <form className='flex-1'>
           <input placeholder='type here' className='p-[15px] w-[100%] bg-transparent outline-none text-white text-lg'/> 
@@ -31,7 +28,7 @@ const Chat = () => {
         </form>
 
             <div>
-            <IconButton onClick={manage}>
+            <IconButton>
             <CardGiftcardRoundedIcon fontSize='large' className='p-[5px] '/>
             </IconButton>
             <GifBoxIcon fontSize='large' className='p-[5px] '/>
