@@ -13,7 +13,7 @@ const App = () => {
   const user = useSelector(selectUser);
   return (
     <div className='flex'>
-     {!user ? (
+     {user ? (
        <>
        <Sidebar />
        <Chat />
