@@ -29,7 +29,8 @@ useEffect(() => {
       dispatch(logout());
     }
   })
-})
+} ,[dispatch]);
+
 
   return (
     <div className='flex'>

@@ -4,6 +4,7 @@ import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
 import pic_3 from '../assets/pic_3.jpg'
 import AddIcon from '@mui/icons-material/Add';
 import MicIcon from '@mui/icons-material/Mic';
+import {auth} from 'firebase'
 import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
 import './sidebar.css'
@@ -11,8 +12,12 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import SidebarChannel from './SidebarChannel';
 import SignalCellular4BarIcon from '@mui/icons-material/SignalCellular4Bar';
 import { Avatar } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../app/features/userSlice';
 
 const Sidebar = () => {
+const user = useSelector(selectUser)
+
   return (
     <div className='sidebar_main flex-[0.25] relative '>
     
@@ -57,10 +62,11 @@ const Sidebar = () => {
 
      </div>
      <div className='sidebar_profile '>
-      <Avatar src={pic_3}/>
+      <Avatar onclick={() => auth.singOut()} src={user.photo}/>
       <div className='sidebar_profileinfo '>
-        <h5>fucker</h5>
+        <h5>@{user.displayName}</h5>
       </div>
+      
       <div className='sidebar_profileicon '>
        <MicIcon />
        <HeadphonesIcon />       
