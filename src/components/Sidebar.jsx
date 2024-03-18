@@ -1,11 +1,10 @@
 import React from 'react'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CallOutlinedIcon from '@mui/icons-material/CallOutlined';
-import pic_3 from '../assets/pic_3.jpg'
 import AddIcon from '@mui/icons-material/Add';
 import MicIcon from '@mui/icons-material/Mic';
-import {auth} from 'firebase'
-import HeadphonesIcon from '@mui/icons-material/Headphones';
+//import {auth} from 'firebase'
+//import HeadphonesIcon from '@mui/icons-material/Headphones';
 import SettingsIcon from '@mui/icons-material/Settings';
 import './sidebar.css'
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
@@ -14,9 +13,15 @@ import SignalCellular4BarIcon from '@mui/icons-material/SignalCellular4Bar';
 import { Avatar } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../app/features/userSlice';
+import 'firebase/auth';
+//import firebase from 'firebase/app';
+
+
 
 const Sidebar = () => {
 const user = useSelector(selectUser)
+const auth = firebase.auth();
+
 
   return (
     <div className='sidebar_main flex-[0.25] relative '>
@@ -62,7 +67,7 @@ const user = useSelector(selectUser)
 
      </div>
      <div className='sidebar_profile '>
-      <Avatar onclick={() => auth.singOut()} src={user.photo}/>
+      <Avatar onClick={() => firebase.auth().singOut()} src={user.photo}/>
       <div className='sidebar_profileinfo '>
         <h5>@{user.displayName}</h5>
       </div>
