@@ -1,11 +1,11 @@
 import React from 'react'
 import './sidebarchannel.css'
 
-const SidebarChannel = ({id, channel}) => {
+const SidebarChannel = ({id, channelName}) => {
   return (
     <div className='sidechannel'>
         <p>
-            <span className='span'> #web$3 </span>
+            <span className='span'> {channelName}</span>
         </p>
     </div>
   )
