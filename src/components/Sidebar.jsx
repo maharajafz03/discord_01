@@ -14,10 +14,12 @@ import { useSelector } from 'react-redux';
 import { selectUser } from '../app/features/userSlice';
 import 'firebase/auth';
 import { getAuth, signOut } from 'firebase/auth';
-import firebase from 'firebase/app'; // Import firebase
+//import firebase from 'firebase/app'; // Import firebase
 //import firebase from 'firebase/app';
 import 'firebase/firestore';
 //import { initializeApp } from "firebase/app";
+//import db from 'firebase/firebase'
+import { db }   from '../firebase/firebase';
 
 
 const Sidebar = () => {
@@ -27,9 +29,9 @@ const [Channels, setChannels] = useState([]); // Define channels state
 
 
 useEffect(() => {
-  const db = firebase.firestore(); // Access Firestore database
-  db.collection('channels').onSnapshot(snapshot => (
-    setChannels(snap.docs.map(doc => ({
+  //const db = firebase.firestore(); // Access Firestore database
+  db.Collection('channels').onSnapshot(snapshot => (
+    setChannels(snapshot.docs.map((doc) => ({
       id: doc.id,
       channel: doc.data(),
     })))
@@ -37,21 +39,21 @@ useEffect(() => {
 }, [])
 
 
-const handelAddchannel = () => {
-  const channelName = prompt("Enter channel name"); // Fixed spelling
+// const handelAddchannel = () => {
+//   const channelName = prompt("Enter channel name"); // Fixed spelling
 
-  if (channelName) {
-    const db = firebase.firestore(); // Access Firestore database
-    db.collection('channels').add({
-      channelName: channelName,
-       }).then(() =>{
-        console.log('Channel added succesfully')
-       }).catch((error) => {
-        console.error('Error adding Channel: ' , error)
-       })
-   // Your Firebase add channel code
-  }
-}
+//   if (channelName) {
+//     //const db = firebase.firestore(); // Access Firestore database
+//       db.collection('channels').add({
+//       channelName: channelName,
+//        }).then(() =>{
+//         console.log('Channel added succesfully')
+//        }).catch((error) => {
+//         console.error('Error adding Channel: ' , error)
+//        })
+//    // Your Firebase add channel code
+//   }
+// }
 
 
 const handelClick = () => {
@@ -78,7 +80,7 @@ signOut(auth).then(() => {
           <ExpandMoreIcon />
           <h4>text channel</h4>
           </div>
-          <AddIcon  className='sidebar_add'/>  
+          {/* <AddIcon onClick={handelAddchannel} className='sidebar_add'/>   */}
         </div>
         <div className='sidebar_channel_list overflow-y-auto'>
       {Channels.map(({id, channel}) => {
