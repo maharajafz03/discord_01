@@ -2,23 +2,26 @@ import React from 'react';
 import Discord from '../assets/Discord.png';
 import  { auth, provider } from '../firebase/firebase';
 //import image from "../assets/image8-2.webp"
-import { signInWithPopup } from 'firebase/auth'; // Correct import statements
+//import { signInWithPopup } from 'firebase/auth'; // Correct import statements
 
 
 const Login = () => {
 
-    const signIn = () => {
-     //Firebase direct res..
-    signInWithPopup(auth , provider)
-       .then((result) => {
-        //handle authendication.. 
-         console.log(result.user);
-       })
-      .catch((error) => {
-        //handle auth error 
-        alert(error.message);
-      });
-  }
+  const signIn = () => {
+    auth.signInWithPopup(provider).catch((error) => alert(error.message));
+}
+  //   const signIn = () => {
+  //    //Firebase direct res..
+  //   signInWithPopup(auth , provider)
+  //      .then((result) => {
+  //       //handle authendication.. 
+  //        console.log(result.user);
+  //      })
+  //     .catch((error) => {
+  //       //handle auth error 
+  //       alert(error.message);
+  //     });
+  // }
 
   return (
     <div className='grid place-items-center h-100vh w-[100%]'>

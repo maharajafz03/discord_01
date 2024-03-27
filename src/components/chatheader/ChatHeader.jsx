@@ -7,11 +7,11 @@ import SendRoundedIcon from '@mui/icons-material/SendRounded';
 import HelpRoundedIcon from '@mui/icons-material/HelpRounded';
 import './chatheader.css'
 
-const ChatHeader = () => {
+const ChatHeader = ({channelName}) => {
   return (
     <div className='flex justify-between items-center text-gray-500 p-[10px]'>
         <div>
-        <h3 className='flex items-center text-white'> <span className='text-gray-300 text-[30px] font-bold p-[10px]'> # Bitcoin</span> </h3>
+        <h3 className='flex items-center text-white'> <span className='text-gray-300 text-[30px] font-bold p-[10px]'> # {channelName}</span> </h3>
         </div>
         <div className='chatHeader_right'>
         <NotificationsActiveIcon className=' hover:text-white hover:scale-110'/>

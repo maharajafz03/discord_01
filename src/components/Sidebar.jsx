@@ -13,25 +13,31 @@ import { Avatar } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { selectUser } from '../app/features/userSlice';
 import 'firebase/auth';
-import { getAuth, signOut } from 'firebase/auth';
+//import {  signOut } from 'firebase/auth';
 //import firebase from 'firebase/app'; // Import firebase
 //import firebase from 'firebase/app';
 import 'firebase/firestore';
 //import { initializeApp } from "firebase/app";
 //import db from 'firebase/firebase'
-import { db }   from '../firebase/firebase';
+//import { collection, doc } from 'firebase/firestore';
+import  db, { auth } from '../firebase/firebase'
+//import  db   from '../firebase/firebase';
+//import {doc, setDoc} from 'firebase/firestore'
+//import {collection, addDoc} from 'firebase/firestore'
+
 
 
 const Sidebar = () => {
 const user = useSelector(selectUser)
 
-const [Channels, setChannels] = useState([]); // Define channels state
+const [channels, setChannels] = useState([]); // Define channels state
 
 
 useEffect(() => {
   //const db = firebase.firestore(); // Access Firestore database
-  db.Collection('channels').onSnapshot(snapshot => (
-    setChannels(snapshot.docs.map((doc) => ({
+  db.collection("channels").onSnapshot((snapshot) => (
+    setChannels(
+      snapshot.docs.map((doc) => ({
       id: doc.id,
       channel: doc.data(),
     })))
@@ -39,33 +45,39 @@ useEffect(() => {
 }, [])
 
 
-// const handelAddchannel = () => {
-//   const channelName = prompt("Enter channel name"); // Fixed spelling
+const handelAddchannel = () => {
+  const channelName = prompt("Enter channel name"); // Fixed spelling
 
-//   if (channelName) {
-//     //const db = firebase.firestore(); // Access Firestore database
-//       db.collection('channels').add({
-//       channelName: channelName,
-//        }).then(() =>{
-//         console.log('Channel added succesfully')
-//        }).catch((error) => {
-//         console.error('Error adding Channel: ' , error)
-//        })
-//    // Your Firebase add channel code
-//   }
-// }
-
-
-const handelClick = () => {
-  const auth = getAuth();
-signOut(auth).then(() => {
-  // Sign-out successful.
-}).catch((error) => {
-  // An error happened.
-  console.log(error)
-});
-
+ console.log(channelName)
+  if (channelName) {
+    db.collection('channels').add({
+      channelName: channelName,
+    }) 
+  }
+  // if (channelName) {
+  //   //const db = firebase.firestore(); // Access Firestore database
+  //     db.collection("channels").add({
+  //     channelName: channelName,
+  //      }).then(() =>{
+  //       console.log('Channel added succesfully')
+  //      }).catch((error) => {
+  //       console.error('Error adding Channel: ' , error)
+  //      })
+  //  // Your Firebase add channel code
+  // }
 }
+
+
+// const handelClick = () => {
+//   const auth = getAuth();
+// signOut(auth).then(() => {
+//   // Sign-out successful.
+// }).catch((error) => {
+//   // An error happened.
+//   console.log(error)
+// });
+
+// }
   return (
     <div className='sidebar_main flex-[0.25] relative '>
     
@@ -80,19 +92,22 @@ signOut(auth).then(() => {
           <ExpandMoreIcon />
           <h4>text channel</h4>
           </div>
-          {/* <AddIcon onClick={handelAddchannel} className='sidebar_add'/>   */}
+          <AddIcon onClick={handelAddchannel} className='sidebar_add'/>  
         </div>
         <div className='sidebar_channel_list overflow-y-auto'>
-      {Channels.map(({id, channel}) => {
-      
-        <SidebarChannel key={id} id={id} channelName={channel.channelName}/>
+        
+        {channels.map(({ id, channel }) => (
+  <SidebarChannel key={id} id={id} channelName={channel.channelName}/>
+))}
 
+      {/* {channels.map(({id, channel}) => {
+        <SidebarChannel key={id} id={id} channelName={channel.channelName}/>
       })}
-      <SidebarChannel/>
+       */}
    
      </div>
      </div>
-     <button onClick={handelClick}>Logout</button>
+     {/* <button onClick={handelClick}>Logout</button> */}
      <div className=''>
      <div className='sidebar_voice '>
      <SignalCellular4BarIcon 
@@ -113,7 +128,7 @@ signOut(auth).then(() => {
 
       </div>
       <div className='sidebar_profile '>
-       <Avatar  src={user.photo}/>
+       <Avatar  onClick={() => auth.signOut()} src={user.photo}/>
        <div className='sidebar_profileinfo '>
          <h5>@{user.displayName}</h5>
        </div>

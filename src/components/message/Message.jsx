@@ -1,32 +1,22 @@
 import { Avatar } from '@mui/material'
  import React from 'react';
 
-
-//  function Clock() {
-//   const [time, setTime] = useState(new Date());
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setTime(new Date());
-//     }, 1000);
-
-//     return () => clearInterval(interval);
-//   }, []);
-//  }
- const Message = () => {
+ const Message = ({ timestamp , user , Message }) => {
   
   return (
     <div className='flex item-center p-[20px] text-white'>
-        <Avatar />
+       
+        <Avatar src={user.photo} />
+       
         <div className='ml-[20px]'>
-            <h4>king
+            <h4>@{user.displayName}
             <span className='text-gray-500 ml-[20px] text-base'>
-                {/* {time.toLocaleTimeString()} */}
-                <p>Time showing....</p>
+               
+                <p> {new Date(timestamp?.toDate()).toUTCString()}</p>
             </span>
             </h4>
 
-            <p>this is message</p>
+            <p>{Message}</p>
         </div>
     </div>
   )
