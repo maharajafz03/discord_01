@@ -1,7 +1,7 @@
 import { Avatar } from '@mui/material'
  import React from 'react';
 
- const Message = ({ timestamp , user , Message }) => {
+ const Message = ({ timestamp , user , Messages }) => {
   
   return (
     <div className='flex item-center p-[20px] text-white'>
@@ -16,7 +16,7 @@ import { Avatar } from '@mui/material'
             </span>
             </h4>
 
-            <p>{Message}</p>
+            <p>{Messages}</p>
         </div>
     </div>
   )

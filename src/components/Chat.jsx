@@ -74,7 +74,7 @@ const Chat = () => {
               <button type='submit' 
               disabled={!channelId}
               onClick={sendMessage} 
-              className=''>
+              className='hidden'>
               sent</button>
         </form>
 
