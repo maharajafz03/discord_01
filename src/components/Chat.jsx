@@ -18,7 +18,7 @@ const Chat = () => {
   const user = useSelector(selectUser)
   const channelId = useSelector(selectchannelId)
   const channelName = useSelector(selectchannelName)
-  const [Input, setInput] = useState()
+  const [input, setInput] = useState("")
   const [messages, setMessages] = useState([])
  
  useEffect(() =>{
@@ -28,9 +28,9 @@ const Chat = () => {
       .doc(channelId)
       .collection('messages')
       .orderBy('timestamp','desc')
-      .onSnapshot((snapshot) =>
+      .onSnapshot((snapshot) => 
         setMessages(snapshot.docs.map((doc) => doc.data()))
-      )
+    )
     }
  } ,[channelId]);
 
@@ -40,7 +40,7 @@ const Chat = () => {
   db.collection('channels').doc(channelId).collection('messages').
       add({
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-      message: Input,
+      message: input,
       user: user,
       })
 
@@ -50,9 +50,10 @@ const Chat = () => {
   return (
     <div className='chat'>
       <ChatHeader channelName = {channelName}/>
-      <div className='flex-1'>
+      <div className = "flex-1">
         {messages.map((message) =>{
           <Message
+          key={message.timestamp} // Add a unique key for each message
           timestamp={message.timestamp}
           message={message.message}
           user={message.user}
@@ -66,15 +67,16 @@ const Chat = () => {
         <AddCircleOutlineRoundedIcon />
         <form className='flex-1'>
           <input 
-          value={Input} 
+          value={input} 
           disabled={!channelId}
           onChange={(e) => setInput(e.target.value) } 
           placeholder={`Message #${channelName}`} 
           className='p-[15px] w-[100%] bg-transparent outline-none text-white text-lg'/> 
+              
               <button type='submit' 
               disabled={!channelId}
               onClick={sendMessage} 
-              className='hidden'>
+              className=''>
               sent</button>
         </form>
 
